@@ -1,6 +1,33 @@
 #include<iostream>
 #include<string>
+#include<cstdlib>
 
+bool playGame(int guesse){
+    srand(time(NULL));
+    std::cout << "Playing Game..\n";
+    std::cout << "Guess the number between 0 and 100\n";
+    int correct = rand() % 20 ;
+    int guess;
+    while(guesse != 0){
+
+        std::cout <<guesse << " try left \n";
+        std::cin >> guess;
+
+        if(guess == correct){
+            return true;
+        }
+        else{
+            if(guess > correct){
+                std::cout << "to high\n";
+            }
+            else{
+                std::cout << "to low\n";
+            }
+        }
+        guesse -= 1;
+    }
+    return false;
+}
 
 int main(){
     //Catch the name==========================
@@ -17,22 +44,32 @@ int main(){
 
     if(response == 'y' or response == 'o'){ //yes
         std::cout << "Ok let's play a game then " << name << " !!\n";
-
-        std::cout << "Difficulty easy, medium, hard ? \n";
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); //empty the buffer !!!
-        std::string diff;
+        std::cout << "Difficulty :\n 0: easy\n 1: medium\n 2: hard \n";
+        int diff;
+        bool won;
         std::cin >> diff;
-        if(diff == "easy"){
-            std::cout << "he what a girl..";
+
+        switch(diff){
+            
+            case 0 : //easy
+                won = playGame(10);
+                break;
+            case 1 : //medium
+                won = playGame(6);
+                break;
+            case 2 : //hard
+                won = playGame(3);
+                break;
+            default:
+                std::cout << response << "What ????\n";
+                break;
         }
-        else if(diff == "medium"){
-            std::cout << "yeah okay";
-        }
-        else if(diff == "hard"){
-            std::cout << "that's my boy";
+        if(won){
+            std::cout << "You WOOOOOON !!!!";
         }
         else{
-            std::cout<< "stupid guy, you now how to read ???";
+            std::cout<< "LOOOOOOSEEEER !!!!";
         }
     }
 
@@ -45,3 +82,4 @@ int main(){
 
     return 0;
 }
+
