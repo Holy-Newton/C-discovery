@@ -6,7 +6,7 @@ bool playGame(int guesse){
     srand(time(NULL));
     std::cout << "Playing Game..\n";
     std::cout << "Guess the number between 0 and 100\n";
-    int correct = rand() % 20 ;
+    int correct = rand() % 100 ;
     int guess;
     while(guesse != 0){
 
